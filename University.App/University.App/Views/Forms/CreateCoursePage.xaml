@@ -4,7 +4,7 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              x:Class="University.App.Views.Forms.CreateCoursePage">
     <ContentPage.Content>
-        <ScrollView>
+        <ScrollView BindingContext="{Binding CreateCourse}">
         <StackLayout Padding="20"
                      VerticalOptions="Start">
 
@@ -24,21 +24,25 @@
                     </Grid.RowDefinitions>
 
                     <Label Text="ID" Grid.Row="0" Grid.Column="0" VerticalOptions="Center"/>
-                    <Entry Keyboard="Numeric" Grid.Row="0" Grid.Column="1"  />
+                    <Entry Keyboard="Numeric" Grid.Row="0" Grid.Column="1" Text="{Binding CourseID}" />
 
                     <Label Text="Title" Grid.Row="1" Grid.Column="0" VerticalOptions="Center"/>
-                    <Entry  Grid.Row="1" Grid.Column="1"  />
+                    <Entry  Grid.Row="1" Grid.Column="1" Text="{Binding Title}"  />
 
 
                     <Label Text="Credits" Grid.Row="2" Grid.Column="0" VerticalOptions="Center"/>
-                    <Entry  Keyboard="Numeric" Grid.Row="2" Grid.Column="1"  />
+                    <Entry  Keyboard="Numeric" Grid.Row="2" Grid.Column="1" Text="{Binding Credits}" />
                 </Grid>
 
                 <Button Text="Save"
                     CornerRadius="23"
                     HeightRequest="46"
-                    BackgroundColor="Navy"
-                    TextColor="White"/>
+                    BackgroundColor="Lavender"
+                    TextColor="WhiteSmoke"
+                    Command="{Binding CreateCourseCommand}"
+                    IsEnabled="{Binding IsEnabled}"/>
+
+                <ActivityIndicator IsRunning="{Binding IsRunning}" />
 
             </StackLayout>
         </ScrollView>

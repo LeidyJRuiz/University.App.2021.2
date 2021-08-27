@@ -56,6 +56,7 @@ namespace University.App.ViewModels.Forms
         {
             this._apiService = new ApiService();
             this.CreateCourseCommand = new Command(CreateCourse);
+            this.IsEnabled = true;
         }
 
         #endregion

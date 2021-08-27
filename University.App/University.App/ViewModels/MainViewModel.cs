@@ -12,6 +12,7 @@ namespace University.App.ViewModels
         public StudentsViewModel Students { get; set; }
         public MainViewModel()
         {
+            instance = this;
             this.Courses = new CoursesViewModel();
             this.CreateCourseCommand = new Command(GoToCreateCourse);
             this.Students = new StudentsViewModel();
