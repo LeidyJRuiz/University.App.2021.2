@@ -1,6 +1,5 @@
-﻿using System;
+﻿using University.App.Views.Forms;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace University.App
 {
@@ -10,7 +9,8 @@ namespace University.App
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+           
+           MainPage = new NavigationPage(new CoursesPage());
         }
 
         protected override void OnStart()

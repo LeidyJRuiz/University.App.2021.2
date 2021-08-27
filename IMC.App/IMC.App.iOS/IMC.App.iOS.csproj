@@ -127,10 +127,4 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
-  <ItemGroup>
-    <ProjectReference Include="..\IMC.App\IMC.App.csproj">
-      <Project>{C29429CA-1069-4F80-83AD-928FE1883E9A}</Project>
-      <Name>IMC.App</Name>
-    </ProjectReference>
-  </ItemGroup>
 </Project>
