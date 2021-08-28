@@ -9,6 +9,7 @@ namespace University.App.ViewModels
 
         public CoursesViewModel Courses { get; set; }
         public CreateCourseViewModel CreateCourse { get; set; }
+        public CreateStudentViewModel CreateStudent { get; set; }
         public StudentsViewModel Students { get; set; }
         public MainViewModel()
         {
@@ -16,6 +17,8 @@ namespace University.App.ViewModels
             this.Courses = new CoursesViewModel();
             this.CreateCourseCommand = new Command(GoToCreateCourse);
             this.Students = new StudentsViewModel();
+            this.CreateStudentCommand = new Command(GoToCreateStudent);
+
         }
 
         #region Commands
@@ -47,6 +50,20 @@ namespace University.App.ViewModels
         return instance;
             }
 
+        #endregion
+        #region CommandsEstudents
+        public Command CreateStudentCommand { get; set; }
+
+        #endregion
+
+        #region MethodsEstudents
+        async void GoToCreateStudent()
+        {
+            GetInstance().CreateStudent = new CreateStudentViewModel();
+
+            await Application.Current.MainPage.Navigation.PushAsync(new CreateStudentPage());
+
+        }
         #endregion
 
     }

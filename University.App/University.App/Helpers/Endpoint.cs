@@ -7,6 +7,7 @@
         public static string GET_STUDENTS { get; set; } = "api/Students/GetStudents/";
 
         public static string POST_COURSES { get; set; } = "api/Courses";
+        public static string POST_STUDENTS { get; set; } = "api/Students";
 
     }
 }

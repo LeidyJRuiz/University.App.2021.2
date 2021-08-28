@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using University.App.Helpers;
 using University.BL.DTOs;
 using University.BL.Services.Implements;
@@ -13,7 +14,9 @@ namespace University.App.ViewModels.Forms
         #region Fields
         private ApiService _apiService;
         private bool _isRefreshing;
-        private ObservableCollection<CourseDTO> _courses;
+        private ObservableCollection<CourseItemViewModel> _courses;
+        private List<CourseItemViewModel> _allCourses;
+        private string _filter;
         #endregion
 
         #region Properties
@@ -24,12 +27,21 @@ namespace University.App.ViewModels.Forms
             set { this.SetValue(ref this._isRefreshing, value); }
         }
 
-        public ObservableCollection<CourseDTO> Courses
+        public ObservableCollection<CourseItemViewModel> Courses
         {
             get { return this._courses; }
             set { this.SetValue(ref this._courses, value); }
         }
 
+        public string Filter
+        {
+            get { return this._filter; }
+            set 
+            {
+                this.SetValue(ref this._filter, value);
+                this.GetCoursesByFilter();
+            }
+        }
 
         #endregion
 
@@ -55,9 +67,11 @@ namespace University.App.ViewModels.Forms
                     await Application.Current.MainPage.DisplayAlert("Notificación", "No internet conecction", "Cancel");
                     return;
                 }
-                var responseDTO = await _apiService.RequestAPI<List<CourseDTO>>(Endpoint.URL_BASE_UNIVERSITY_API,Endpoint.GET_COURSES,null, ApiService.Method.Get);
+                var responseDTO = await _apiService.RequestAPI<List<CourseItemViewModel>>(Endpoint.URL_BASE_UNIVERSITY_API,Endpoint.GET_COURSES,null, ApiService.Method.Get);
 
-                this.Courses = new ObservableCollection<CourseDTO>((List<CourseDTO>)responseDTO.Data);
+
+                this._allCourses = (List<CourseItemViewModel>)responseDTO.Data;
+                this.Courses = new ObservableCollection<CourseItemViewModel>(this._allCourses);
                 this.IsRefreshing = false;
             }
             catch (Exception ex)
@@ -66,6 +80,16 @@ namespace University.App.ViewModels.Forms
                 await Application.Current.MainPage.DisplayAlert("Notificación", ex.Message, "Cancel");
                 
             }
+        }
+        void GetCoursesByFilter()
+        {
+            var courses = this._allCourses;
+            if (!string.IsNullOrEmpty(this.Filter))
+
+                courses = courses.Where(x => x.Title.ToLower().Contains(this.Filter)).ToList();
+            this.Courses = new ObservableCollection<CourseItemViewModel>(courses);
+
+
         }
 
         #endregion

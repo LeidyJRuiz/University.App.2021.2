@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace University.BL.DTOs
 {
@@ -14,7 +15,7 @@ namespace University.BL.DTOs
         public string FirstMidName { get; set; }
 
         [Required(ErrorMessage = "The EnrollmentDate is required")]
-        public string EnrollmentDate { get; set; }
+        public DateTime EnrollmentDate { get; set; }
 
         [Required(ErrorMessage = "The FullName is required")]
         public string FullName { get; set; }

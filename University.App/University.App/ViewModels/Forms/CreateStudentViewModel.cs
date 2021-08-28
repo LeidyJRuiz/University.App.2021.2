@@ -1,18 +1,23 @@
 ﻿using System;
-using University.App.Helpers;
-using University.BL.DTOs;
+using System.Collections.Generic;
+using System.Text;
 using University.BL.Services.Implements;
 using Xamarin.Forms;
+using University.BL.DTOs;
+using University.App.Helpers;
 
 namespace University.App.ViewModels.Forms
 {
-    public class CreateCourseViewModel : BaseViewModel
+    public class CreateStudentViewModel :BaseViewModel
     {
+
         #region Fields
         private ApiService _apiService;
-        private int _courseID;
-        private string _title;
-        private int _credits;
+        private int _id;
+        private string _lastName;
+        private string _firstMidName;
+        private DateTime _enrollmentDate;
+        private string _fullName;
         private bool _isEnabled;
         private bool _isRunning;
 
@@ -31,44 +36,57 @@ namespace University.App.ViewModels.Forms
             get { return this._isRunning; }
             set { this.SetValue(ref this._isRunning, value); }
         }
-        public int CourseID
+        public int ID
         {
-            get { return this._courseID; }
-            set { this.SetValue(ref this._courseID, value); }
+            get { return this._id; }
+            set { this.SetValue(ref this._id, value); }
         }
-        public string Title
+        public string LastName
         {
-            get { return this._title; }
-            set { this.SetValue(ref this._title, value); }
+            get { return this._lastName; }
+            set { this.SetValue(ref this._lastName, value); }
         }
-        public int Credits
+        public string FirstMidName
         {
-            get { return this._credits; }
-            set { this.SetValue(ref this._credits, value); }
+            get { return this._firstMidName; }
+            set { this.SetValue(ref this._firstMidName, value); }
         }
 
+        public DateTime EnrollmentDate
+        { 
+              get { return this._enrollmentDate; }
+    set { this.SetValue(ref this._enrollmentDate, value); }
+}
+
+        public string FullName
+        {
+            get { return this._fullName; }
+            set { this.SetValue(ref this._fullName, value); }
+        }
 
 
         #endregion
 
         #region Constructor
-        public CreateCourseViewModel()
+        public CreateStudentViewModel()
         {
             this._apiService = new ApiService();
-            this.CreateCourseCommand = new Command(CreateCourse);
+            this.CreateStudentCommand = new Command(CreateStudent);
             this.IsEnabled = true;
         }
 
         #endregion
-
         #region Methods
-        async void CreateCourse()
+        async void CreateStudent()
         {
             try
             {
-                if(String.IsNullOrEmpty(this.Title) ||
-                    this.Credits ==0 ||
-                        this.CourseID ==0)
+                if (String.IsNullOrEmpty(this.FullName) ||
+
+                    String.IsNullOrEmpty(this.LastName) ||
+                    String.IsNullOrEmpty(this.FirstMidName) ||
+                    String.IsNullOrEmpty(this.LastName) ||
+                        this.ID == 0)
                 {
                     await Application.Current.MainPage.DisplayAlert("Notificación", "The Fields are required", "Cancel");
                     return;
@@ -86,17 +104,19 @@ namespace University.App.ViewModels.Forms
                     await Application.Current.MainPage.DisplayAlert("Notificación", "No internet conecction", "Cancel");
                     return;
                 }
-                var CourseDTO = new CourseDTO
+                var StudentsDTO = new StudentsDTO
                 {
-                    CourseID = this.CourseID,
-                    Title = this.Title,
-                    Credits = this.Credits
+                    ID = this.ID,
+                    LastName = this.LastName,
+                    FirstMidName = this.FirstMidName,
+                    EnrollmentDate = this.EnrollmentDate,
+                    FullName = this.FullName
                 };
 
                 var message = "The process is successful";
 
-                var responseDTO = await _apiService.RequestAPI <CourseDTO>(Endpoint.URL_BASE_UNIVERSITY_API, 
-                    Endpoint.POST_COURSES, CourseDTO, ApiService.Method.Post);
+                var responseDTO = await _apiService.RequestAPI<StudentsDTO>(Endpoint.URL_BASE_UNIVERSITY_API,
+                    Endpoint.POST_STUDENTS, StudentsDTO, ApiService.Method.Post);
 
                 if (responseDTO.Code < 200 || responseDTO.Code > 299)
                     message = responseDTO.Message;
@@ -104,8 +124,8 @@ namespace University.App.ViewModels.Forms
                 this.IsEnabled = true;
                 this.IsRunning = false;
 
-                this.CourseID = this.Credits = 0;
-                this.Title = String.Empty;
+                this.ID = 0;
+                this.LastName = this.FirstMidName=this.FullName= String.Empty;
 
                 await Application.Current.MainPage.DisplayAlert("Notificación", message, "Cancel");
 
@@ -124,9 +144,8 @@ namespace University.App.ViewModels.Forms
 
         #region  Commands
 
-        public Command CreateCourseCommand { get; set; }
+        public Command CreateStudentCommand { get; set; }
 
         #endregion
-
     }
 }
