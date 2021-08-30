@@ -25,21 +25,19 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <Label Text="ID" Grid.Row="0" Grid.Column="0" VerticalOptions="Center"/>
-                    <Entry Keyboard="Numeric" Grid.Row="0" Grid.Column="1" Text="{Binding ID}" />
 
-                    <Label Text="LastName" Grid.Row="1" Grid.Column="0" VerticalOptions="Center"/>
-                    <Entry  Grid.Row="1" Grid.Column="1" Text="{Binding LastName}"  />
+                    <Label Text="LastName"  Grid.Row="0" Grid.Column="0" VerticalOptions="Center"/>
+                    <Entry Grid.Row="0" Grid.Column="1" Text="{Binding LastName}"  />
 
 
-                    <Label Text="FirstMidName" Grid.Row="2" Grid.Column="0" VerticalOptions="Center"/>
-                    <Entry   Grid.Row="2" Grid.Column="1" Text="{Binding FirstMidName}" />
+                    <Label Text="FirstMidName" Grid.Row="1" Grid.Column="0" VerticalOptions="Center"/>
+                    <Entry   Grid.Row="1" Grid.Column="1" Text="{Binding FirstMidName}" />
 
-                    <Label Text="EnrollmentDate" Grid.Row="3" Grid.Column="0" VerticalOptions="Center"/>
-                    <Entry   Grid.Row="3" Grid.Column="1" Text="{Binding EnrollmentDate}" />
+                    <Label Text="EnrollmentDate" Grid.Row="2" Grid.Column="0" VerticalOptions="Center"/>
+                    <DatePicker   Grid.Row="2" Grid.Column="1" Date="{Binding EnrollmentDate}" />
 
-                    <Label Text="FullName" Grid.Row="4" Grid.Column="0" VerticalOptions="Center"/>
-                    <Entry   Grid.Row="4" Grid.Column="1" Text="{Binding FullName}" />
+                    <Label Text="FullName" Grid.Row="3" Grid.Column="0" VerticalOptions="Center"/>
+                    <Entry   Grid.Row="3" Grid.Column="1" Text="{Binding FullName}" />
                 </Grid>
 
                 <Button Text="Save"

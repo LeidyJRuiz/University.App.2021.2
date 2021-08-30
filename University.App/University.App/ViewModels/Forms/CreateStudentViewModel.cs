@@ -13,10 +13,9 @@ namespace University.App.ViewModels.Forms
 
         #region Fields
         private ApiService _apiService;
-        private int _id;
         private string _lastName;
         private string _firstMidName;
-        private DateTime _enrollmentDate;
+        private DateTime _enrollmentDate= DateTime.Now;
         private string _fullName;
         private bool _isEnabled;
         private bool _isRunning;
@@ -36,11 +35,7 @@ namespace University.App.ViewModels.Forms
             get { return this._isRunning; }
             set { this.SetValue(ref this._isRunning, value); }
         }
-        public int ID
-        {
-            get { return this._id; }
-            set { this.SetValue(ref this._id, value); }
-        }
+
         public string LastName
         {
             get { return this._lastName; }
@@ -82,11 +77,12 @@ namespace University.App.ViewModels.Forms
             try
             {
                 if (String.IsNullOrEmpty(this.FullName) ||
-
                     String.IsNullOrEmpty(this.LastName) ||
                     String.IsNullOrEmpty(this.FirstMidName) ||
-                    String.IsNullOrEmpty(this.LastName) ||
-                        this.ID == 0)
+                    string.IsNullOrEmpty (this.EnrollmentDate.ToString())||
+                    String.IsNullOrEmpty(this.LastName)
+                    
+                       )
                 {
                     await Application.Current.MainPage.DisplayAlert("Notificación", "The Fields are required", "Cancel");
                     return;
@@ -106,7 +102,7 @@ namespace University.App.ViewModels.Forms
                 }
                 var StudentsDTO = new StudentsDTO
                 {
-                    ID = this.ID,
+                    
                     LastName = this.LastName,
                     FirstMidName = this.FirstMidName,
                     EnrollmentDate = this.EnrollmentDate,
@@ -124,8 +120,9 @@ namespace University.App.ViewModels.Forms
                 this.IsEnabled = true;
                 this.IsRunning = false;
 
-                this.ID = 0;
+                
                 this.LastName = this.FirstMidName=this.FullName= String.Empty;
+                this.EnrollmentDate = DateTime.Now;
 
                 await Application.Current.MainPage.DisplayAlert("Notificación", message, "Cancel");
 
