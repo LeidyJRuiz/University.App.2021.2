@@ -9,7 +9,7 @@
             <StackLayout Padding="20"
                      VerticalOptions="Start">
 
-                <Frame BackgroundColor="Black" CornerRadius="14">
+                <Frame BackgroundColor="CornflowerBlue" CornerRadius="14">
                     <Label Text="New Student" TextColor="White" FontSize="38" HorizontalTextAlignment="Center"/>
                 </Frame>
                 <Grid Margin="10, 0">
@@ -43,7 +43,7 @@
                 <Button Text="Save"
                     CornerRadius="23"
                     HeightRequest="46"
-                    BackgroundColor="Lavender"
+                    BackgroundColor="LightSteelBlue"
                     TextColor="WhiteSmoke"
                     Command="{Binding CreateStudentCommand}"
                     IsEnabled="{Binding IsEnabled}"/>

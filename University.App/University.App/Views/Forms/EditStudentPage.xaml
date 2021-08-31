@@ -2,15 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             x:Class="University.App.Views.Forms.CreateCoursePage">
+             x:Class="University.App.Views.Forms.EditStudentPage">
     <ContentPage.Content>
-        <ScrollView BindingContext="{Binding CreateCourse}">
-        <StackLayout Padding="20"
+        <ScrollView BindingContext="{Binding EditStudent}">
+
+            <StackLayout Padding="20"
                      VerticalOptions="Start">
 
                 <Frame BackgroundColor="CornflowerBlue" CornerRadius="14">
-                    <Label Text="New Course" TextColor="White" FontSize="38" HorizontalTextAlignment="Center"/>
-
+                    <Label Text="Edit Student" TextColor="White" FontSize="38" HorizontalTextAlignment="Center"/>
                 </Frame>
                 <Grid Margin="10, 0">
                     <Grid.ColumnDefinitions>
@@ -21,17 +21,26 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
                     <Label Text="ID" Grid.Row="0" Grid.Column="0" VerticalOptions="Center"/>
-                    <Entry Keyboard="Numeric" Grid.Row="0" Grid.Column="1" Text="{Binding CourseID}" />
-
-                    <Label Text="Title" Grid.Row="1" Grid.Column="0" VerticalOptions="Center"/>
-                    <Entry  Grid.Row="1" Grid.Column="1" Text="{Binding Title}"  />
+                    <Entry IsEnabled="False" Grid.Row="0" Grid.Column="1" Text="{Binding Student.ID}" />
 
 
-                    <Label Text="Credits" Grid.Row="2" Grid.Column="0" VerticalOptions="Center"/>
-                    <Entry  Keyboard="Numeric" Grid.Row="2" Grid.Column="1" Text="{Binding Credits}" />
+                    <Label Text="LastName"  Grid.Row="1" Grid.Column="0" VerticalOptions="Center"/>
+                    <Entry Grid.Row="1" Grid.Column="1" Text="{Binding Student.LastName}"  />
+
+
+                    <Label Text="FirstMidName" Grid.Row="2" Grid.Column="0" VerticalOptions="Center"/>
+                    <Entry   Grid.Row="2" Grid.Column="1" Text="{Binding Student.FirstMidName}" />
+
+                    <Label Text="EnrollmentDate" Grid.Row="3" Grid.Column="0" VerticalOptions="Center"/>
+                    <DatePicker   Grid.Row="3" Grid.Column="1" Date="{Binding Student.EnrollmentDate}" />
+
+                    <Label Text="FullName" Grid.Row="4" Grid.Column="0" VerticalOptions="Center"/>
+                    <Entry   Grid.Row="4" Grid.Column="1" Text="{Binding Student.FullName}" />
                 </Grid>
 
                 <Button Text="Save"
@@ -39,12 +48,14 @@
                     HeightRequest="46"
                     BackgroundColor="LightSteelBlue"
                     TextColor="WhiteSmoke"
-                    Command="{Binding CreateCourseCommand}"
+                    Command="{Binding EditStudentCommand}"
                     IsEnabled="{Binding IsEnabled}"/>
 
                 <ActivityIndicator IsRunning="{Binding IsRunning}" />
 
+
             </StackLayout>
+
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

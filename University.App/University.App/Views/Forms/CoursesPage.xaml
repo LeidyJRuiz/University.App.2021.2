@@ -13,7 +13,7 @@
         <StackLayout BindingContext="{Binding Courses}"
                      Padding="20"
                      VerticalOptions="Center">
-            <Frame BackgroundColor="Black" CornerRadius="14">
+            <Frame BackgroundColor="CornflowerBlue" CornerRadius="14">
                 <Label Text="Courses" TextColor="White" FontSize="38" HorizontalTextAlignment="Center"/>
 
 
@@ -25,8 +25,8 @@
                        Text="{Binding Filter}"/>
 
             <Frame BorderColor="Black"
-                   CornerRadius="14" BackgroundColor="Gray">
-                <Grid>
+                   CornerRadius="14" BackgroundColor="#56B3F3">
+                <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
@@ -53,12 +53,19 @@
                         <ViewCell>
                             <Frame BorderColor="Black" CornerRadius="14">
                                 <Grid>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding EditCourseCommand}"/>
+
+                                    </Grid.GestureRecognizers>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <Label Grid.Column="0" Text="{Binding CourseID}"/>
                                     <Label Grid.Column="1" Text="{Binding Title}" HorizontalOptions="Center"/>
+                                    <ImageButton Grid.Column="2" Source="ic_delete" BackgroundColor="Transparent" 
+                                     Command="{Binding DeleteCourseCommand}"            />
 
                                 </Grid>
                             </Frame>

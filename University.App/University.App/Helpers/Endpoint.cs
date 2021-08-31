@@ -6,8 +6,14 @@
         public static string GET_COURSES { get; set; } = "api/Courses/GetCourses/";
         public static string GET_STUDENTS { get; set; } = "api/Students/GetStudents/";
 
-        public static string POST_COURSES { get; set; } = "api/Courses";
-        public static string POST_STUDENTS { get; set; } = "api/Students";
+        public static string POST_COURSES { get; set; } = "api/Courses/";
+        public static string PUT_COURSES { get; set; } = "api/Courses/";
+        public static string DELETE_COURSES { get; set; } = "api/Courses/";
+       
+        public static string POST_STUDENTS { get; set; } = "api/Students/";
+        public static string PUT_STUDENTS { get; set; } = "api/Students/";
+        public static string DELETE_STUDENTS { get; set; } = "api/Students/";
+       
 
     }
 }
