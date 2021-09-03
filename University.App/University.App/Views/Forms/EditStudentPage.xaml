@@ -39,8 +39,7 @@
                     <Label Text="EnrollmentDate" Grid.Row="3" Grid.Column="0" VerticalOptions="Center"/>
                     <DatePicker   Grid.Row="3" Grid.Column="1" Date="{Binding Student.EnrollmentDate}" />
 
-                    <Label Text="FullName" Grid.Row="4" Grid.Column="0" VerticalOptions="Center"/>
-                    <Entry   Grid.Row="4" Grid.Column="1" Text="{Binding Student.FullName}" />
+
                 </Grid>
 
                 <Button Text="Save"

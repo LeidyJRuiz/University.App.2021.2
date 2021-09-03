@@ -76,11 +76,11 @@ namespace University.App.ViewModels.Forms
         {
             try
             {
-                if (String.IsNullOrEmpty(this.FullName) ||
+                if (
                     String.IsNullOrEmpty(this.LastName) ||
                     String.IsNullOrEmpty(this.FirstMidName) ||
-                    string.IsNullOrEmpty (this.EnrollmentDate.ToString())||
-                    String.IsNullOrEmpty(this.LastName)
+                    string.IsNullOrEmpty (this.EnrollmentDate.ToString())
+                    
                     
                        )
                 {
@@ -107,6 +107,7 @@ namespace University.App.ViewModels.Forms
                     FirstMidName = this.FirstMidName,
                     EnrollmentDate = this.EnrollmentDate,
                     FullName = this.FullName
+                    
                 };
 
                 var message = "The process is successful";

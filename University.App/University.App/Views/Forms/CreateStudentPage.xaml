@@ -22,7 +22,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
+                        
                     </Grid.RowDefinitions>
 
 
@@ -36,8 +36,7 @@
                     <Label Text="EnrollmentDate" Grid.Row="2" Grid.Column="0" VerticalOptions="Center"/>
                     <DatePicker   Grid.Row="2" Grid.Column="1" Date="{Binding EnrollmentDate}" />
 
-                    <Label Text="FullName" Grid.Row="3" Grid.Column="0" VerticalOptions="Center"/>
-                    <Entry   Grid.Row="3" Grid.Column="1" Text="{Binding FullName}" />
+
                 </Grid>
 
                 <Button Text="Save"

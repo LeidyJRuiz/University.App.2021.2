@@ -54,11 +54,10 @@ namespace University.App.ViewModels.Forms
         {
             try
             {
-                if (String.IsNullOrEmpty(this.Student.FullName) ||
+                if (
                     String.IsNullOrEmpty(this.Student.LastName) ||
                     String.IsNullOrEmpty(this.Student.FirstMidName) ||
                     string.IsNullOrEmpty(this.Student.EnrollmentDate.ToString()) ||
-                    String.IsNullOrEmpty(this.Student.LastName) ||
                     this.Student.ID == 0)
 
                        
@@ -79,14 +78,7 @@ namespace University.App.ViewModels.Forms
                     await Application.Current.MainPage.DisplayAlert("Notificación", "No internet conecction", "Cancel");
                     return;
                 }
-                var StudentsDTO = new StudentsDTO
-                {
-                    ID = this.Student.ID,
-                    LastName = this.Student.LastName,
-                    FirstMidName = this.Student.FirstMidName,
-                    EnrollmentDate = this.Student.EnrollmentDate,
-                    FullName = this.Student.FullName
-                };
+ 
 
                 var message = "The process is successful";
 
@@ -100,7 +92,7 @@ namespace University.App.ViewModels.Forms
                 this.IsRunning = false;
 
                 this.Student.ID = 0;
-                this.Student.LastName = this.Student.FirstMidName = this.Student.FullName = String.Empty;
+                this.Student.LastName = this.Student.FirstMidName  = String.Empty;
                 this.Student.EnrollmentDate = DateTime.Now;
 
                 await Application.Current.MainPage.DisplayAlert("Notificación", message, "Cancel");

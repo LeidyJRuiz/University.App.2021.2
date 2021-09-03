@@ -13,13 +13,18 @@ namespace University.App.ViewModels
         public StudentsViewModel Students { get; set; }
         public EditCourseViewModel EditCourse { get; set; }
         public EditStudentViewModel EditStudent { get; set; }
+        public CreateOfficeViewModel CreateOffice { get; set; }
+        public HomeViewModel Home { get; set; }
         public MainViewModel()
         {
             instance = this;
-            this.Courses = new CoursesViewModel();
+            this.Home = new HomeViewModel();
+
             this.CreateCourseCommand = new Command(GoToCreateCourse);
-            this.Students = new StudentsViewModel();
+          
             this.CreateStudentCommand = new Command(GoToCreateStudent);
+            this.CreateOffice = new CreateOfficeViewModel();
+            
 
         }
 
