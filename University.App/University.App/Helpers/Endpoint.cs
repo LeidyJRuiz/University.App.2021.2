@@ -22,6 +22,9 @@
         #region Instructors
 
         public static string GET_INSTRUCTORS { get; set; } = "api/Instructors/GetInstructors/";
+        public static string POST_INSTRUCTORS { get; set; } = "api/Instructors/";
+        public static string DELETE_INSTRUCTORS { get; set; } = "api/Instructors/";
+        public static string PUT_INSTRUCTORS { get; set; } = "api/Instructors/";
 
         #endregion
 

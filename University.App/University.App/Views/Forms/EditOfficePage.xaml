@@ -24,14 +24,7 @@
                         </Grid.RowDefinitions>
 
                     <Label Text="Instructor" Grid.Row="0" Grid.Column="0" VerticalOptions="Center"/>
-                    <Picker  
-                            Grid.Row="0" Grid.Column="1" 
-                            HorizontalOptions="FillAndExpand"
-                            HorizontalTextAlignment="Center"
-                            BackgroundColor="Transparent"
-                            ItemsSource="{Binding Instructors}"
-                            SelectedItem="{Binding InstructorSelected}"
-                            ItemDisplayBinding="{Binding Office.Instructor.FullName}"
+                    <Entry  Grid.Row="0" Grid.Column="1" Text="{Binding InstructorSelected.FullName}" 
                             IsEnabled="False"/>
 
                     <Label Text="Location" Grid.Row="1" Grid.Column="0" VerticalOptions="Center"/>
@@ -46,7 +39,7 @@
                     HeightRequest="46"
                     BackgroundColor="LightSteelBlue"
                     TextColor="WhiteSmoke"
-                    Command="{Binding EditOfficeCommand}"
+                    Command="{Binding EditOfficesCommand}"
                     IsEnabled="{Binding IsEnabled}"/>
 
                     <ActivityIndicator IsRunning="{Binding IsRunning}" />

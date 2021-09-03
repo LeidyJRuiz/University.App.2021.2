@@ -17,6 +17,9 @@ namespace University.App.ViewModels
         public OfficesViewModel Offices { get; set; }
         public HomeViewModel Home { get; set; }
         public EditOfficeViewModel EditOffice { get; set; }
+        public InstructorsViewModel Instructors { get; set; }
+        public CreateInstructorsViewModel CreateInstructors { get; set; }
+        public EditInstructorsViewModel EditInstructors { get; set; }
         public MainViewModel()
         {
             instance = this;
@@ -27,8 +30,9 @@ namespace University.App.ViewModels
             this.CreateStudentCommand = new Command(GoToCreateStudent);
             this.CreateOffice = new CreateOfficeViewModel();
             this.CreateOfficesCommand = new Command(GoToCreateOffices);
+            this.CreateInstructorsCommand = new Command(GoToCreateInstructors);
 
-            
+
 
         }
 
@@ -86,6 +90,21 @@ namespace University.App.ViewModels
             GetInstance().CreateOffice = new CreateOfficeViewModel();
 
             await Application.Current.MainPage.Navigation.PushAsync(new CreateOfficePage());
+
+        }
+        #endregion
+
+        #region CommandsInstructors
+        public Command CreateInstructorsCommand { get; set; }
+
+        #endregion
+
+        #region MethodsInstructors
+        async void GoToCreateInstructors()
+        {
+            GetInstance().CreateInstructors = new CreateInstructorsViewModel();
+
+            await Application.Current.MainPage.Navigation.PushAsync(new CreateInstructorsPage());
 
         }
         #endregion

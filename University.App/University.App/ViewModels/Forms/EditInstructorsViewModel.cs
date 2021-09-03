@@ -8,17 +8,13 @@ using Xamarin.Forms;
 
 namespace University.App.ViewModels.Forms
 {
-    public class EditOfficeViewModel : BaseViewModel
+    public class EditInstructorsViewModel : BaseViewModel
     {
-
         #region Fields
         private ApiService _apiService;
-        private OfficeDTO _office;
+        private InstructorDTO _instructors;
         private bool _isEnabled;
         private bool _isRunning;
-        private InstructorDTO _instructorSelected;
-        private List<InstructorDTO> _instructors;
-
 
         #endregion
 
@@ -35,76 +31,39 @@ namespace University.App.ViewModels.Forms
             get { return this._isRunning; }
             set { this.SetValue(ref this._isRunning, value); }
         }
-        public OfficeDTO Office
-        {
-            get { return this._office; }
-            set { this.SetValue(ref this._office, value); }
-        }
 
-        public InstructorDTO InstructorSelected
-        {
-            get { return this._instructorSelected; }
-            set { this.SetValue(ref this._instructorSelected, value); }
-        }
-
-
-        public List<InstructorDTO> Instructors
+        public InstructorDTO Instructors
         {
             get { return this._instructors; }
             set { this.SetValue(ref this._instructors, value); }
         }
 
+
         #endregion
 
         #region Constructor
-        public EditOfficeViewModel(OfficeDTO office)
+        public EditInstructorsViewModel(InstructorDTO instructor)
         {
             this._apiService = new ApiService();
-            this.EditOfficesCommand = new Command(EditOffice);
-            this.GetInstructorsCommand = new Command(GetInstructors);
-            this.GetInstructorsCommand.Execute(null);
+            this.EditInstructorsCommand = new Command(EditInstructors);
             this.IsEnabled = true;
-            this.Office = office;
-            this.InstructorSelected = this.Office.Instructor;
-
+            this.Instructors = instructor;
         }
 
         #endregion
 
         #region Methods
-
-        async void GetInstructors()
+        async void EditInstructors()
         {
             try
             {
-                var connection = await _apiService.CheckConnection();
-                if (!connection)
-                {
-                    this.IsEnabled = true;
-                    this.IsRunning = false;
+                if (
+                    String.IsNullOrEmpty(this.Instructors.LastName) ||
+                    String.IsNullOrEmpty(this.Instructors.FirstMidName) ||
+                    string.IsNullOrEmpty(this.Instructors.HireDate.ToString()) ||
+                    this.Instructors.ID == 0)
 
-                    await Application.Current.MainPage.DisplayAlert("Notificación", "No internet conecction", "Cancel");
-                    return;
-                }
-                var responseDTO = await _apiService.RequestAPI<List<InstructorDTO>>(Endpoint.URL_BASE_UNIVERSITY_API,
-               Endpoint.GET_INSTRUCTORS, null, ApiService.Method.Get);
 
-                this.Instructors = (List<InstructorDTO>)responseDTO.Data;
-
-            }
-            catch (Exception ex)
-            {
-                await Application.Current.MainPage.DisplayAlert("Notificación", ex.Message, "Cancel");
-            }
-
-        }
-
-        async void EditOffice()
-        {
-            try
-            {
-                if (String.IsNullOrEmpty(this.Office.Location) ||
-                    this.InstructorSelected == null)
                 {
                     await Application.Current.MainPage.DisplayAlert("Notificación", "The Fields are required", "Cancel");
                     return;
@@ -122,12 +81,12 @@ namespace University.App.ViewModels.Forms
                     await Application.Current.MainPage.DisplayAlert("Notificación", "No internet conecction", "Cancel");
                     return;
                 }
-                
+
 
                 var message = "The process is successful";
 
-                var responseDTO = await _apiService.RequestAPI<OfficeDTO>(Endpoint.URL_BASE_UNIVERSITY_API,
-                    Endpoint.PUT_OFFICES + this.Office.InstructorID, this.Office, ApiService.Method.Put);
+                var responseDTO = await _apiService.RequestAPI<InstructorDTO>(Endpoint.URL_BASE_UNIVERSITY_API,
+                    Endpoint.PUT_INSTRUCTORS + this.Instructors.ID, this.Instructors, ApiService.Method.Put);
 
                 if (responseDTO.Code < 200 || responseDTO.Code > 299)
                     message = responseDTO.Message;
@@ -135,8 +94,9 @@ namespace University.App.ViewModels.Forms
                 this.IsEnabled = true;
                 this.IsRunning = false;
 
-                
-                this.Office.Location= String.Empty;
+                this.Instructors.ID = 0;
+                this.Instructors.LastName = this.Instructors.FirstMidName = String.Empty;
+                this.Instructors.HireDate = DateTime.Now;
 
                 await Application.Current.MainPage.DisplayAlert("Notificación", message, "Cancel");
 
@@ -155,8 +115,9 @@ namespace University.App.ViewModels.Forms
 
         #region  Commands
 
-        public Command EditOfficesCommand { get; set; }
-        public Command GetInstructorsCommand { get; set; }
+        public Command EditInstructorsCommand { get; set; }
+
         #endregion
+
     }
 }

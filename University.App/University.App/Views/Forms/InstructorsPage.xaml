@@ -1,20 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             x:Class="University.App.Views.Forms.OfficePage">
+              BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             x:Class="University.App.Views.Forms.InstructorsPage">
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="ic_action_add_circle"
-                     Command="{Binding CreateOfficesCommand}"/>
+                     Command="{Binding CreateInstructorsCommand}"/>
     </ContentPage.ToolbarItems>
-
-
     <ContentPage.Content>
-        <StackLayout BindingContext="{Binding Offices}"
+        <StackLayout BindingContext="{Binding Instructors}"
                      Padding="20"
                      VerticalOptions="Center">
             <Frame BackgroundColor="CornflowerBlue" CornerRadius="14">
-                <Label Text="Offices" TextColor="White" FontSize="38" HorizontalTextAlignment="Center"/>
+                <Label Text="Instructors" TextColor="White" FontSize="38" HorizontalTextAlignment="Center"/>
 
 
             </Frame>
@@ -26,24 +24,23 @@
 
             <Frame BorderColor="Black"
                    CornerRadius="14" BackgroundColor="#56B3F3">
-                <Grid >
+                <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    
-                    <Label Grid.Column="1" Text="Location"/>
-                    <Label Grid.Column="2" Text="Instructor" HorizontalOptions="Center"/>
+
+                    <Label Grid.Column="0" Text="ID"/>
+                    <Label Grid.Column="1" Text="FullName" HorizontalOptions="Center"/>
                 </Grid>
             </Frame>
 
 
 
-            <ListView ItemsSource="{Binding Offices}"
+            <ListView ItemsSource="{Binding Instructors}"
                       HasUnevenRows="True"
                       IsPullToRefreshEnabled="True"
                       IsRefreshing="{Binding IsRefreshing}"
@@ -55,20 +52,18 @@
                             <Frame BorderColor="Black" CornerRadius="14">
                                 <Grid>
                                     <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding EditOfficesCommand}"/>
+                                        <TapGestureRecognizer Command="{Binding EditInstructorsCommand}"/>
 
                                     </Grid.GestureRecognizers>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    
-                                    <Label Grid.Column="1" Text="{Binding Location}"/>
-                                    <Label Grid.Column="2" Text="{Binding Instructor.FullName}" HorizontalOptions="Center"/>
-                                    <ImageButton Grid.Column="3" Source="ic_delete" BackgroundColor="Transparent" 
-                                     Command="{Binding DeleteOfficesCommand}"            />
+                                    <Label Grid.Column="0" Text="{Binding ID}"/>
+                                    <Label Grid.Column="1" Text="{Binding FullName}" HorizontalOptions="Center"/>
+                                    <ImageButton Grid.Column="2" Source="ic_delete" BackgroundColor="Transparent"
+                                     Command="{Binding DeleteInstructorsCommand}"/>
 
                                 </Grid>
                             </Frame>
