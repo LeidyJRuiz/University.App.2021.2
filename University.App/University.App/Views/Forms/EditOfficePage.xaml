@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             x:Class="University.App.Views.Forms.EditOfficePage">
+    <ContentPage.Content>
+        <ScrollView BindingContext="{Binding EditOffice}">
+                <StackLayout Padding="20"
+                     VerticalOptions="Start">
+
+                    <Frame BackgroundColor="CornflowerBlue" CornerRadius="14">
+                        <Label Text="Edit Office" TextColor="White" FontSize="38" HorizontalTextAlignment="Center"/>
+
+                    </Frame>
+                    <Grid Margin="10, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                    <Label Text="Instructor" Grid.Row="0" Grid.Column="0" VerticalOptions="Center"/>
+                    <Picker  
+                            Grid.Row="0" Grid.Column="1" 
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center"
+                            BackgroundColor="Transparent"
+                            ItemsSource="{Binding Instructors}"
+                            SelectedItem="{Binding InstructorSelected}"
+                            ItemDisplayBinding="{Binding Office.Instructor.FullName}"
+                            IsEnabled="False"/>
+
+                    <Label Text="Location" Grid.Row="1" Grid.Column="0" VerticalOptions="Center"/>
+                        <Entry  Grid.Row="1" Grid.Column="1" Text="{Binding Office.Location}"  />
+
+
+                   
+                    </Grid>
+
+                    <Button Text="Save"
+                    CornerRadius="23"
+                    HeightRequest="46"
+                    BackgroundColor="LightSteelBlue"
+                    TextColor="WhiteSmoke"
+                    Command="{Binding EditOfficeCommand}"
+                    IsEnabled="{Binding IsEnabled}"/>
+
+                    <ActivityIndicator IsRunning="{Binding IsRunning}" />
+
+                </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
+</ContentPage>

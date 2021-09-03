@@ -26,8 +26,10 @@
         #endregion
 
         #region Office
-
+        public static string GET_OFFICES { get; set; } = "api/OfficeAssignments";
         public static string POST_OFFICES { get; set; } = "api/OfficeAssignments/";
+        public static string PUT_OFFICES { get; set; } = "api/OfficeAssignments/";
+        public static string DELETE_OFFICES { get; set; } = "api/OfficeAssignments/";
 
         #endregion
 

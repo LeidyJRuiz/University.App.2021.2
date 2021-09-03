@@ -15,9 +15,11 @@ namespace University.App.ViewModels.Forms
         {
             this.GetCoursesCommand = new Command(GoToCoursesPage);
             this.GetStudentsCommand = new Command(GoToStudentsPage);
+            this.GetOfficesCommand = new Command(GoToOfficesPage);
         }
         public Command GetCoursesCommand { get; set; }
         public Command GetStudentsCommand { get; set; }
+        public Command GetOfficesCommand { get; set; }
         async void GoToCoursesPage()
         {
             MainViewModel.GetInstance().Courses = new CoursesViewModel();
@@ -30,6 +32,13 @@ namespace University.App.ViewModels.Forms
             MainViewModel.GetInstance().Students = new StudentsViewModel();
 
             await Application.Current.MainPage.Navigation.PushAsync(new StudentsPage());
+
+        }
+        async void GoToOfficesPage()
+        {
+            MainViewModel.GetInstance().Offices = new OfficesViewModel();
+
+            await Application.Current.MainPage.Navigation.PushAsync(new OfficePage());
 
         }
     }
