@@ -7,24 +7,33 @@ using Xamarin.Forms;
 
 namespace University.App.ViewModels.Forms
 {
-    public class OfficesItemViewModel : OfficeDTO
+    public class DepartmentsItemViewModel : DepartmentDTO
     {
         #region Fields
         private ApiService _apiService;
 
         #endregion
 
+        #region Commands
+        public Command EditDepartmentsCommand { get; set; }
+        public Command DeleteDepartmentsCommand { get; set; }
+
+
+
+        #endregion
+
+
         #region Methods
 
-        async void EditOffice()
+        async void EditDepartments()
         {
-            MainViewModel.GetInstance().EditOffice = new EditOfficeViewModel(this);
+            MainViewModel.GetInstance().EditDepartments = new EditDepartmentsViewModel(this);
 
-            await Application.Current.MainPage.Navigation.PushAsync(new EditOfficePage());
+            await Application.Current.MainPage.Navigation.PushAsync(new EditDepartmentsPage());
 
         }
 
-        async void DeleteOffice()
+        async void DeleteDepartments()
         {
 
             try
@@ -46,8 +55,8 @@ namespace University.App.ViewModels.Forms
 
                 var message = "The process is successful";
 
-                var responseDTO = await _apiService.RequestAPI<CourseDTO>(Endpoint.URL_BASE_UNIVERSITY_API,
-                    Endpoint.DELETE_OFFICES + this.InstructorID, null, ApiService.Method.Delete);
+                var responseDTO = await _apiService.RequestAPI<DepartmentDTO>(Endpoint.URL_BASE_UNIVERSITY_API,
+                    Endpoint.DELETE_DEPARTMENTS + this.DepartmentID, null, ApiService.Method.Delete);
 
                 if (responseDTO.Code < 200 || responseDTO.Code > 299)
                     message = responseDTO.Message;
@@ -65,21 +74,16 @@ namespace University.App.ViewModels.Forms
         }
 
         #endregion
-        #region Commands
-        public Command EditOfficesCommand { get; set; }
-        public Command DeleteOfficesCommand { get; set; }
 
-
-
-        #endregion
         #region Constructor
-        public OfficesItemViewModel()
+        public DepartmentsItemViewModel()
         {
             this._apiService = new ApiService();
-            this.DeleteOfficesCommand = new Command(DeleteOffice);
-            this.EditOfficesCommand = new Command(EditOffice);
+            this.DeleteDepartmentsCommand = new Command(DeleteDepartments);
+            this.EditDepartmentsCommand = new Command(EditDepartments);
 
         }
         #endregion
+
     }
 }

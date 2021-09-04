@@ -6,50 +6,54 @@
     <ContentPage.Content>
         <ScrollView BindingContext="{Binding Home}">
         <StackLayout>
-            <Label Text="Courses"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" >
-                <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding GetCoursesCommand}"/>
+
+               
+            
+            
+                <Button Text="COURSES"
+                    CornerRadius="30"
+                    HeightRequest="130"
+                    BackgroundColor="CornflowerBlue"
+                    TextColor="WhiteSmoke"
+                
+                        Command="{Binding GetCoursesCommand}"/>
 
 
-                </Label.GestureRecognizers>
-
-            </Label>
-                <Label Text="Students"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" >
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding GetStudentsCommand}"/>
+                <Button Text="STUDENTS"
+                    CornerRadius="30"
+                    HeightRequest="130"
+                    BackgroundColor="CornflowerBlue"
+                    TextColor="WhiteSmoke"
+                 Command="{Binding GetStudentsCommand}"/>
 
 
-                    </Label.GestureRecognizers>
-
-                </Label>
-
-                <Label Text="Offices"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" >
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding GetOfficesCommand}"/>
+                <Button Text="OFFICES"
+                    CornerRadius="30"
+                    HeightRequest="130"
+                    BackgroundColor="CornflowerBlue"
+                    TextColor="WhiteSmoke"
+                 Command="{Binding GetOfficesCommand}"/>
 
 
-                    </Label.GestureRecognizers>
-                    
 
-                </Label>
-                <Label Text="Instructors"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" >
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding GetInstructorsCommand}"/>
+                <Button Text="INSTRUCTORS"
+                    CornerRadius="30"
+                    HeightRequest="130"
+                    BackgroundColor="CornflowerBlue"
+                    TextColor="WhiteSmoke"
+                 Command="{Binding GetInstructorsCommand}"/>
 
 
-                    </Label.GestureRecognizers>
+
+                <Button Text="DEPARTMENTS"
+                    CornerRadius="30"
+                    HeightRequest="130"
+                    BackgroundColor="CornflowerBlue"
+                    TextColor="WhiteSmoke"
+                 Command="{Binding GetDepartmentsCommand}"/>
 
 
-                </Label>
-
+         
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

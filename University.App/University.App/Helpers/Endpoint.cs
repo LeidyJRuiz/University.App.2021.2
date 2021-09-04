@@ -36,5 +36,14 @@
 
         #endregion
 
+        #region  Departments
+
+        public static string GET_DEPARTMENTS { get; set; } = "api/Departments";
+        public static string POST_DEPARTMENTS { get; set; } = "api/Departments/";
+        public static string PUT_DEPARTMENTS { get; set; } = "api/Departments/";
+        public static string DELETE_DEPARTMENTS { get; set; } = "api/Departments/";
+
+        #endregion
+
     }
 }

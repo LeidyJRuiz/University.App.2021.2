@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             x:Class="University.App.Views.Forms.EditDepartmentsPage">
+    <ContentPage.Content>
+        <ScrollView BindingContext="{Binding EditDepartments}">
+            <StackLayout Padding="20"
+                     VerticalOptions="Start">
+
+                <Frame BackgroundColor="CornflowerBlue" CornerRadius="14">
+                    <Label Text="Edit Departments" TextColor="White" FontSize="38" HorizontalTextAlignment="Center"/>
+
+                </Frame>
+                <Grid Margin="10, 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="DepartmentID" Grid.Row="0" Grid.Column="0" VerticalOptions="Center"/>
+                    <Entry  Grid.Row="0" Grid.Column="1" Text="{Binding Departments.DepartmentID}" IsEnabled="False"  />
+
+                    <Label Text="Name" Grid.Row="1" Grid.Column="0" VerticalOptions="Center"/>
+                    <Entry  Grid.Row="1" Grid.Column="1" Text="{Binding Departments.Name}"   />
+                    
+                    <Label Text="Budget" Grid.Row="2" Grid.Column="0" VerticalOptions="Center"/>
+                    <Entry  Grid.Row="2" Grid.Column="1" Text="{Binding Departments.Budget}"  />
+
+                    <Label Text="StartDate" Grid.Row="3" Grid.Column="0" VerticalOptions="Center"/>
+                    <DatePicker   Grid.Row="3" Grid.Column="1" Date="{Binding Departments.StartDate}" />
+
+                    <Label Text="Instructor" Grid.Row="4" Grid.Column="0" VerticalOptions="Center"/>
+                    <Picker Title="Seleccionar Instructor" 
+                            Grid.Row="4" Grid.Column="1" 
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center"
+                            BackgroundColor="Transparent"
+                            ItemsSource="{Binding Instructors}"
+                            SelectedItem="{Binding InstructorSelected}"
+                            ItemDisplayBinding="{Binding FullName}"/>
+
+
+                </Grid>
+
+                <Button Text="Save"
+                    CornerRadius="23"
+                    HeightRequest="46"
+                    BackgroundColor="LightSteelBlue"
+                    TextColor="WhiteSmoke"
+                    Command="{Binding EditDepartmentsCommand}"
+                    IsEnabled="{Binding IsEnabled}"/>
+
+                <ActivityIndicator IsRunning="{Binding IsRunning}" />
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
