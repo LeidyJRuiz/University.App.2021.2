@@ -45,7 +45,7 @@
                             BackgroundColor="Transparent"
                             ItemsSource="{Binding Instructors}"
                             SelectedItem="{Binding InstructorSelected}"
-                            ItemDisplayBinding="{Binding FullName}"/>
+                            ItemDisplayBinding="{Binding FullName}" />
 
 
                 </Grid>

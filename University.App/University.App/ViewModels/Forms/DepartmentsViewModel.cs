@@ -91,7 +91,7 @@ namespace University.App.ViewModels.Forms
             var departments = this._allDepartments;
             if (!string.IsNullOrEmpty(this.Filter))
 
-                departments = departments.Where(x => x.Instructor.FullName.ToLower().Contains(this.Filter)).ToList();
+                departments = departments.Where(x => x.Name.ToLower().Contains(this.Filter)).ToList();
             this.Departments = new ObservableCollection<DepartmentsItemViewModel>(departments);
 
 

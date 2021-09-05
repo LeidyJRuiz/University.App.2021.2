@@ -125,7 +125,15 @@ namespace University.App.ViewModels.Forms
                     return;
                 }
 
-
+                var departmentsDTO = new DepartmentDTO
+                {
+                    DepartmentID = this.Departments.DepartmentID,
+                    Name = this.Departments.Name,
+                    Budget = this.Departments.Budget,
+                    StartDate=this.Departments.StartDate,
+                    InstructorID=this.InstructorSelected.ID
+                };
+            
                 var message = "The process is successful";
 
                 var responseDTO = await _apiService.RequestAPI<DepartmentDTO>(Endpoint.URL_BASE_UNIVERSITY_API,
@@ -141,7 +149,8 @@ namespace University.App.ViewModels.Forms
                 this.Departments.Name = String.Empty;
                 this.Departments.Budget = 0;
                 this.Departments.StartDate = DateTime.Now;
-                this.Departments.InstructorID = this.InstructorSelected.ID;
+                this.Departments.InstructorID =0;
+ 
 
 
                 await Application.Current.MainPage.DisplayAlert("Notificación", message, "Cancel");
