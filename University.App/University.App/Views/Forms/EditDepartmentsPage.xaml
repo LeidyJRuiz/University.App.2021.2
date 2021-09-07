@@ -37,7 +37,7 @@
                     <Label Text="StartDate" Grid.Row="3" Grid.Column="0" VerticalOptions="Center"/>
                     <DatePicker   Grid.Row="3" Grid.Column="1" Date="{Binding Departments.StartDate}" />
 
-                    <Label Text="Instructor" Grid.Row="4" Grid.Column="0" VerticalOptions="Center"/>
+                <Label Text="Instructor" Grid.Row="4" Grid.Column="0" VerticalOptions="Center"/>
                     <Picker Title="Seleccionar Instructor" 
                             Grid.Row="4" Grid.Column="1" 
                             HorizontalOptions="FillAndExpand"
@@ -45,7 +45,8 @@
                             BackgroundColor="Transparent"
                             ItemsSource="{Binding Instructors}"
                             SelectedItem="{Binding InstructorSelected}"
-                            ItemDisplayBinding="{Binding FullName}" />
+                            ItemDisplayBinding="{Binding FullName}" 
+                             />
 
 
                 </Grid>

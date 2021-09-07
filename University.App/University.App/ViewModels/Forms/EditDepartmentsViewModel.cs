@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using University.App.Helpers;
 using University.BL.DTOs;
@@ -65,7 +66,6 @@ namespace University.App.ViewModels.Forms
             this.GetInstructorsCommand.Execute(null);
             this.IsEnabled = true;
             this.Departments = departments;
-            this.InstructorSelected = this.Departments.Instructor;
 
         }
 
@@ -90,6 +90,7 @@ namespace University.App.ViewModels.Forms
                Endpoint.GET_INSTRUCTORS, null, ApiService.Method.Get);
 
                 this.Instructors = (List<InstructorDTO>)responseDTO.Data;
+                this.InstructorSelected = this.Instructors.FirstOrDefault(x => x.ID == this.Departments.InstructorID);
 
             }
             catch (Exception ex)
@@ -124,16 +125,9 @@ namespace University.App.ViewModels.Forms
                     await Application.Current.MainPage.DisplayAlert("Notificación", "No internet conecction", "Cancel");
                     return;
                 }
+                this.Departments.InstructorID = this.InstructorSelected.ID;
+ 
 
-                var departmentsDTO = new DepartmentDTO
-                {
-                    DepartmentID = this.Departments.DepartmentID,
-                    Name = this.Departments.Name,
-                    Budget = this.Departments.Budget,
-                    StartDate=this.Departments.StartDate,
-                    InstructorID=this.InstructorSelected.ID
-                };
-            
                 var message = "The process is successful";
 
                 var responseDTO = await _apiService.RequestAPI<DepartmentDTO>(Endpoint.URL_BASE_UNIVERSITY_API,
@@ -149,8 +143,8 @@ namespace University.App.ViewModels.Forms
                 this.Departments.Name = String.Empty;
                 this.Departments.Budget = 0;
                 this.Departments.StartDate = DateTime.Now;
-                this.Departments.InstructorID =0;
- 
+
+
 
 
                 await Application.Current.MainPage.DisplayAlert("Notificación", message, "Cancel");
