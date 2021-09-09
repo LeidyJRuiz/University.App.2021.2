@@ -12,7 +12,7 @@
             
                 <Button Text="COURSES"
                     CornerRadius="30"
-                    HeightRequest="130"
+                    HeightRequest="140"
                     BackgroundColor="CornflowerBlue"
                     TextColor="WhiteSmoke"
                 
@@ -21,7 +21,7 @@
 
                 <Button Text="STUDENTS"
                     CornerRadius="30"
-                    HeightRequest="130"
+                    HeightRequest="140"
                     BackgroundColor="CornflowerBlue"
                     TextColor="WhiteSmoke"
                  Command="{Binding GetStudentsCommand}"/>
@@ -29,7 +29,7 @@
 
                 <Button Text="OFFICES"
                     CornerRadius="30"
-                    HeightRequest="130"
+                    HeightRequest="140"
                     BackgroundColor="CornflowerBlue"
                     TextColor="WhiteSmoke"
                  Command="{Binding GetOfficesCommand}"/>
@@ -38,7 +38,7 @@
 
                 <Button Text="INSTRUCTORS"
                     CornerRadius="30"
-                    HeightRequest="130"
+                    HeightRequest="140"
                     BackgroundColor="CornflowerBlue"
                     TextColor="WhiteSmoke"
                  Command="{Binding GetInstructorsCommand}"/>
@@ -47,7 +47,7 @@
 
                 <Button Text="DEPARTMENTS"
                     CornerRadius="30"
-                    HeightRequest="130"
+                    HeightRequest="140"
                     BackgroundColor="CornflowerBlue"
                     TextColor="WhiteSmoke"
                  Command="{Binding GetDepartmentsCommand}"/>
